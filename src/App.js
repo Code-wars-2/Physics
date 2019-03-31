@@ -1,25 +1,36 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
-import './App.css';
-
+const force = 0.1;
 class App extends Component {
+  constructor(props){
+    super(props);
+    this.state = {
+      x:475,
+      y:20
+    }
+  }
+  componentDidMount(){
+    this.gravity();
+  }
+  gravity = () => {
+    let x = 0;
+    let y = 10;
+    this.setState({
+      x:this.state.x+x,
+      y:this.state.y+y
+    })
+    //setTimeout(this.gravity,20)
+  }
+
   render() {
     return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <p>
-            Edit <code>src/App.js</code> and save to reload.
-          </p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
-        </header>
+      <div className="boundary"> 
+        <div 
+          className="object" 
+          style={{ 
+            left: this.state.x+"px",
+            top: this.state.y+"px",         
+            }}
+        ></div>
       </div>
     );
   }
